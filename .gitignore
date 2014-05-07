@@ -1,0 +1,6 @@
+opencv-experiments
+*.o
+cam_pix
+*.ppm
+*.pyo
+*.pyc
