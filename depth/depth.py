@@ -6,8 +6,8 @@ import calibrate_stereo as cal
 
 
 def main():
-    ii_l = cv2.imread("../cam_pix/left.jpg")
-    ii_r = cv2.imread("../cam_pix/right.jpg")
+    ii_l = cv2.imread("left.jpg")
+    ii_r = cv2.imread("right.jpg")
     c = cal.StereoCalibration(input_folder="../cam_data")
     (ri_l, ri_r) = c.rectify((ii_l, ii_r))
     cv2.namedWindow("left")
@@ -22,10 +22,10 @@ def main():
     sgbm.SADWindowSize = 11
     sgbm.preFilterCap = 31
     sgbm.minDisparity = 0
-    sgbm.speckleWindowSize = 15
-    sgbm.speckleRange = 20
+    sgbm.speckleWindowSize = 9
+    sgbm.speckleRange = 24
     sgbm.disp12MaxDiff = 1
-    sgbm.numberOfDisparities = 16
+    sgbm.numberOfDisparities = 128
     disp = cv2.normalize(sgbm.compute(ri_l, ri_r), alpha=0, beta=255, \
         norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
     cv2.namedWindow("Disparity")
